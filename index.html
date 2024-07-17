@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Balance Explorer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="shortcut icon" href="asset/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <div id="navbar">
+        <div class="logoContainer">
+            <div class="logo"><svg width="250" height="70" viewBox="0 0 350 77.51649279768094">
+                    <defs>
+                        <linearGradient id="SvgjsLinearGradient5636">
+                            <stop stop-color="#905e26" offset="0"></stop>
+                            <stop stop-color="#f5ec9b" offset="0.5"></stop>
+                            <stop stop-color="#905e26" offset="1"></stop>
+                        </linearGradient>
+                        <linearGradient id="SvgjsLinearGradient5640">
+                            <stop stop-color="#905e26" offset="0"></stop>
+                            <stop stop-color="#f5ec9b" offset="0.5"></stop>
+                            <stop stop-color="#905e26" offset="1"></stop>
+                        </linearGradient>
+                    </defs>
+                    <g transform="matrix(0.878136911504399,0,0,0.878136911504399,-2.50962886085686,-10.035266111746536)"
+                        fill="url(#SvgjsLinearGradient5636)">
+                        <path
+                            d="M19.429 17.714 l-9.1429 0 l0 16 l9.1429 0 l2.2857 -2.2857 l5.4286 0 l0 4.2857 l-4.2857 4.2857 l-15.714 0 l-4.2857 -4.2857 l0 -20 l4.2857 -4.2857 l15.714 0 l4.2857 4.2857 l0 4.2857 l-5.4286 0 z M58.571 15.713999999999999 l0 10 l-4.2857 4.2857 l4.2857 6.5714 l0 3.4286 l-6.8571 0 l-5.9429 -9.7143 l-5.4857 0 l0 9.7143 l-7.4286 0 l0 -28.571 l21.429 0 z M51.143 24 l0 -6.2857 l-10.857 0 l0 6.2857 l10.857 0 z M89.71457142857143 11.428999999999998 l0 3.4286 l-9.7143 15.714 l0 9.4286 l-7.4286 0 l0 -9.4857 l-9.7143 -15.657 l0 -3.4286 l6.5714 0 l6.8571 11.657 l6.8571 -11.657 l6.5714 0 z M93.99995714285714 40 l0 -28.571 l20.857 0 l4.2857 4.2857 l0 12 l-4.2857 4.2857 l-13.429 0 l0 8 l-7.4286 0 z M101.42885714285714 25.714 l10.286 0 l0 -8 l-10.286 0 l0 8 z M122.85714 17.714 l0 -6.2857 l24.286 0 l0 6.2857 l-8.4571 0 l0 22.286 l-7.4286 0 l0 -22.286 l-8.4 0 z M171.714 11.428999999999998 l4.2857 4.2857 l0 20 l-4.2857 4.2857 l-16.571 0 l-4.2857 -4.2857 l0 -20 l4.2857 -4.2857 l16.571 0 z M168.571 33.7143 l0 -16 l-10.286 0 l0 16 l10.286 0 z M221.71385714285714 15.713999999999999 l0 6.9714 l-3.0286 3.0286 l3.0286 3.0286 l0 6.9714 l-4.2857 4.2857 l-21.429 0 l0 -28.571 l21.429 0 z M214.28585714285714 22.571 l0 -4.8571 l-10.857 0 l0 4.8571 l10.857 0 z M214.28585714285714 33.7143 l0 -4.8571 l-10.857 0 l0 4.8571 l10.857 0 z M227.42852857142856 40 l0 -24.286 l4.2857 -4.2857 l16.571 0 l4.2857 4.2857 l0 24.286 l-7.4286 0 l0 -8 l-10.286 0 l0 8 l-7.4286 0 z M234.85742857142856 25.714 l10.286 0 l0 -8 l-10.286 0 l0 8 z M258.2856714285714 35.7143 l0 -24.286 l7.4286 0 l0 22.286 l15.429 0 l0 6.2857 l-18.571 0 z M285.42852857142856 40 l0 -24.286 l4.2857 -4.2857 l16.571 0 l4.2857 4.2857 l0 24.286 l-7.4286 0 l0 -8 l-10.286 0 l0 8 l-7.4286 0 z M292.85742857142856 25.714 l10.286 0 l0 -8 l-10.286 0 l0 8 z M333.9995714285714 11.428999999999998 l7.4286 0 l0 28.571 l-6.5714 0 l-11.143 -16 l0 16 l-7.4286 0 l0 -28.571 l6.5714 0 l11.143 15.886 l0 -15.886 z M363.7147142857142 17.714 l-9.1429 0 l0 16 l9.1429 0 l2.2857 -2.2857 l5.4286 0 l0 4.2857 l-4.2857 4.2857 l-15.714 0 l-4.2857 -4.2857 l0 -20 l4.2857 -4.2857 l15.714 0 l4.2857 4.2857 l0 4.2857 l-5.4286 0 z M401.42871428571425 17.714 l-16.857 0 l0 4.8571 l14.571 0 l0 6.2857 l-14.571 0 l0 4.8571 l16.857 0 l0 6.2857 l-20 0 l-4.2857 -4.2857 l0 -24.286 l24.286 0 l0 6.2857 z">
+                        </path>
+                    </g>
+                    <g transform="matrix(1.4848521786335898,0,0,1.4848521786335898,-4.242665007868792,18.03124882466573)"
+                        fill="url(#SvgjsLinearGradient5640)">
+                        <path
+                            d="M27.143 17.714 l-16.857 0 l0 4.8571 l14.571 0 l0 6.2857 l-14.571 0 l0 4.8571 l16.857 0 l0 6.2857 l-20 0 l-4.2857 -4.2857 l0 -24.286 l24.286 0 l0 6.2857 z M32 40 l0 -3.4286 l7.8857 -10.857 l-7.8857 -10.857 l0 -3.4286 l6.5714 0 l6.2857 9.1429 l6.2857 -9.1429 l6.5714 0 l0 3.4286 l-7.8857 10.857 l7.8857 10.857 l0 3.4286 l-6.5714 0 l-6.2857 -9.1429 l-6.2857 9.1429 l-6.5714 0 z M62.57138571428571 40 l0 -28.571 l20.857 0 l4.2857 4.2857 l0 12 l-4.2857 4.2857 l-13.429 0 l0 8 l-7.4286 0 z M70.00028571428571 25.714 l10.286 0 l0 -8 l-10.286 0 l0 8 z M93.42852857142857 35.7143 l0 -24.286 l7.4286 0 l0 22.286 l15.429 0 l0 6.2857 l-18.571 0 z M141.42828571428572 11.428999999999998 l4.2857 4.2857 l0 20 l-4.2857 4.2857 l-16.571 0 l-4.2857 -4.2857 l0 -20 l4.2857 -4.2857 l16.571 0 z M138.28528571428572 33.7143 l0 -16 l-10.286 0 l0 16 l10.286 0 z M177.14242857142855 15.713999999999999 l0 10 l-4.2857 4.2857 l4.2857 6.5714 l0 3.4286 l-6.8571 0 l-5.9429 -9.7143 l-5.4857 0 l0 9.7143 l-7.4286 0 l0 -28.571 l21.429 0 z M169.71442857142856 24 l0 -6.2857 l-10.857 0 l0 6.2857 l10.857 0 z M207.14299999999997 17.714 l-16.857 0 l0 4.8571 l14.571 0 l0 6.2857 l-14.571 0 l0 4.8571 l16.857 0 l0 6.2857 l-20 0 l-4.2857 -4.2857 l0 -24.286 l24.286 0 l0 6.2857 z M238.57099999999997 15.713999999999999 l0 10 l-4.2857 4.2857 l4.2857 6.5714 l0 3.4286 l-6.8571 0 l-5.9429 -9.7143 l-5.4857 0 l0 9.7143 l-7.4286 0 l0 -28.571 l21.429 0 z M231.14299999999997 24 l0 -6.2857 l-10.857 0 l0 6.2857 l10.857 0 z">
+                        </path>
+                    </g>
+                </svg>
+            </div>
+            <h3 class="beta">Beta</h3>
+        </div>
+
+        <div class="connectbtnContainer">
+            <button id="connectBtn">
+                <div class="btn2cmponents">
+                    Connect <svg viewBox="0,0,256,256" width="25px" height="25px">
+                        <g fill-opacity="0" fill="#ff0000" fill-rule="nonzero" stroke="none" stroke-width="1"
+                            stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray=""
+                            stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none"
+                            text-anchor="none" style="mix-blend-mode: normal">
+                            <path d="M0,256v-256h256v256z" id="bgRectangle"></path>
+                        </g>
+                        <g class="fill" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt"
+                            stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0"
+                            font-family="none" font-weight="none" font-size="none" text-anchor="none"
+                            style="mix-blend-mode: normal">
+                            <g transform="scale(5.12,5.12)">
+                                <path
+                                    d="M41,4h-32c-2.76,0 -5,2.24 -5,5v32c0,2.76 2.24,5 5,5h32c2.76,0 5,-2.24 5,-5v-32c0,-2.76 -2.24,-5 -5,-5zM17,20v19h-6v-19zM11,14.47c0,-1.4 1.2,-2.47 3,-2.47c1.8,0 2.93,1.07 3,2.47c0,1.4 -1.12,2.53 -3,2.53c-1.8,0 -3,-1.13 -3,-2.53zM39,39h-6c0,0 0,-9.26 0,-10c0,-2 -1,-4 -3.5,-4.04h-0.08c-2.42,0 -3.42,2.06 -3.42,4.04c0,0.91 0,10 0,10h-6v-19h6v2.56c0,0 1.93,-2.56 5.81,-2.56c3.97,0 7.19,2.73 7.19,8.26z">
+                                </path>
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+            </button>
+        </div>
+    </div>
+    <div class="samples">
+        <div class="sample1">
+            <div class="sample-txt">
+                Input Sample 1:
+            </div>
+            <div class="address-sample-1">
+                0xbd5AF599dB935166C314b9A70af6a9383F49466c
+            </div>
+        </div>
+        <div class="sample2">
+            <div class="sample-txt">
+                Input Sample 2:
+            </div>
+            <div class="address-sample-2">
+                0xbd5AF599dB935166C314b9A70af6a9383F49466c, 0xe2fAC1C082BF2C00C9f1acf7EF4a676a490fBf48
+            </div>
+        </div>
+    </div>
+    <h5>(If more than one wallet address, then enter comma or space seperated values)</h5>
+    <div class="ease" id="inputContainer">
+        <input type="text" placeholder="Enter wallet address here" autocomplete="off" id="inputBar" required />
+        <div class="inputico ease" id="pasteBtn">
+            <svg height="24" fill="rgba(243, 233, 152)" viewBox="0 -960 960 960" width="24">
+                <path
+                    d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h167q11-35 43-57.5t70-22.5q40 0 71.5 22.5T594-840h166q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560h-80v120H280v-120h-80v560Zm280-560q17 0 28.5-11.5T520-800q0-17-11.5-28.5T480-840q-17 0-28.5 11.5T440-800q0 17 11.5 28.5T480-760Z" />
+            </svg>
+        </div>
+        <div class="inputico dispNone ease" id="resetBtn">
+            <svg height="24" fill="rgba(243, 233, 152)" viewBox="0 -960 960 960" width="24">
+                <path
+                    d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+            </svg>
+        </div>
+        <div class="dispNone ease" id="load">
+            <div class="anim-stop" id="loadElem"></div>
+        </div>
+    </div>
+    <div>
+        <select name="chain" id="chain">
+            <option value="polygon" id="pol">Polygon</option>
+            <option value="ethereum">Ethereum</option>
+        </select>
+        <select name="coin" id="coin">
+            <option value="USDT">USDT</option>
+            <option value="USDC">USDC</option>
+            <option value="Matic">Matic</option>
+        </select>
+        <button id="btn" class="btnSimple">Fetch</button>
+    </div>
+    <div id="copies">
+        <button id="btnCopyTable" class="dispNone btnSimple">Copy Table</button>
+        <button id="exportTable" class="dispNone btnSimple">Export CSV</button>
+    </div>
+    <div class="dispHidden" id="getAmntsLoader">Getting Amounts... <span id="progressor"> 0 </span> Done.</div>
+    <div id="tbl">
+        <table id="table" class="dispNone">
+            <thead>
+                <tr>
+                    <th> Wallet Address </th>
+                    <th id="sortAmt" class="sort"> Amount</th>
+                    <th id="sortCoin" class="sort"> Coin </th>
+                    <th id="sortChain" class="sort"> Blockchain </th>
+                <tr>
+            </thead>
+            <tbody id="tbody">
+
+            </tbody>
+        </table>
+    </div>
+    <div id="clrerrorbtn"><button class="btnSimple"> Clear All Errors</button></div>
+    <div id="errorcontainer"></div>
+    <div id="footerContainer">
+        <div id="footer">
+            <ul>
+                <li><a href="https://github.com/awezmirza">
+                        <svg class="githublogo ease" fill="rgba(243, 233, 152)" viewBox="0 0 30 30" width="40px"
+                            height="40px">
+                            <path
+                                d="M15,3C8.373,3,3,8.373,3,15c0,5.623,3.872,10.328,9.092,11.63C12.036,26.468,12,26.28,12,26.047v-2.051 c-0.487,0-1.303,0-1.508,0c-0.821,0-1.551-0.353-1.905-1.009c-0.393-0.729-0.461-1.844-1.435-2.526 c-0.289-0.227-0.069-0.486,0.264-0.451c0.615,0.174,1.125,0.596,1.605,1.222c0.478,0.627,0.703,0.769,1.596,0.769 c0.433,0,1.081-0.025,1.691-0.121c0.328-0.833,0.895-1.6,1.588-1.962c-3.996-0.411-5.903-2.399-5.903-5.098 c0-1.162,0.495-2.286,1.336-3.233C9.053,10.647,8.706,8.73,9.435,8c1.798,0,2.885,1.166,3.146,1.481C13.477,9.174,14.461,9,15.495,9 c1.036,0,2.024,0.174,2.922,0.483C18.675,9.17,19.763,8,21.565,8c0.732,0.731,0.381,2.656,0.102,3.594 c0.836,0.945,1.328,2.066,1.328,3.226c0,2.697-1.904,4.684-5.894,5.097C18.199,20.49,19,22.1,19,23.313v2.734 c0,0.104-0.023,0.179-0.035,0.268C23.641,24.676,27,20.236,27,15C27,8.373,21.627,3,15,3z" />
+                        </svg>
+                    </a>
+                </li>
+                <li><a href="https://www.linkedin.com/in/awezmirza">
+                        <svg class="linkedinlogo ease" viewBox="0,0,256,256" width="40px" height="40px">
+                            <g fill-opacity="0" fill="#ff0000" fill-rule="nonzero" stroke="none" stroke-width="1"
+                                stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray=""
+                                stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none"
+                                text-anchor="none" style="mix-blend-mode: normal">
+                                <path d="M0,256v-256h256v256z" id="bgRectangle"></path>
+                            </g>
+                            <g fill="rgba(243, 233, 152)" fill-rule="nonzero" stroke="none" stroke-width="1"
+                                stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray=""
+                                stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none"
+                                text-anchor="none" style="mix-blend-mode: normal">
+                                <g transform="scale(5.12,5.12)">
+                                    <path
+                                        d="M41,4h-32c-2.76,0 -5,2.24 -5,5v32c0,2.76 2.24,5 5,5h32c2.76,0 5,-2.24 5,-5v-32c0,-2.76 -2.24,-5 -5,-5zM17,20v19h-6v-19zM11,14.47c0,-1.4 1.2,-2.47 3,-2.47c1.8,0 2.93,1.07 3,2.47c0,1.4 -1.12,2.53 -3,2.53c-1.8,0 -3,-1.13 -3,-2.53zM39,39h-6c0,0 0,-9.26 0,-10c0,-2 -1,-4 -3.5,-4.04h-0.08c-2.42,0 -3.42,2.06 -3.42,4.04c0,0.91 0,10 0,10h-6v-19h6v2.56c0,0 1.93,-2.56 5.81,-2.56c3.97,0 7.19,2.73 7.19,8.26z">
+                                    </path>
+                                </g>
+                            </g>
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
